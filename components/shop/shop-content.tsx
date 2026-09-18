@@ -41,7 +41,7 @@ export function ShopContent() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     initialCategory ? [initialCategory] : []
   );
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 150]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 250]);
   const [inStockOnly, setInStockOnly] = useState(false);
   const [saleOnly, setSaleOnly] = useState(initialSale);
   const [sort, setSort] = useState("featured");
@@ -110,8 +110,9 @@ export function ShopContent() {
   return (
     <Container className="py-8 md:py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-semibold tracking-tight">Shop</h1>
-        <p className="mt-2 text-muted-foreground">{filteredProducts.length} products</p>
+        <p className="text-[11px] uppercase tracking-[0.28em] text-moss">Catalog</p>
+        <h1 className="mt-2 font-display text-4xl font-medium tracking-tight md:text-5xl">Shop</h1>
+        <p className="mt-3 text-muted-foreground">{filteredProducts.length} products</p>
       </div>
 
       <div className="flex gap-8">
@@ -120,7 +121,7 @@ export function ShopContent() {
         </aside>
 
         <div className="flex-1 min-w-0">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="mb-6 flex flex-wrap items-center justify-end gap-4">
             <Button
               variant="secondary"
               size="sm"
@@ -166,7 +167,7 @@ export function ShopContent() {
                 onClick={() => {
                   setSearch("");
                   setSelectedCategories([]);
-                  setPriceRange([0, 150]);
+                  setPriceRange([0, 250]);
                   setInStockOnly(false);
                   setSaleOnly(false);
                   setPage(1);

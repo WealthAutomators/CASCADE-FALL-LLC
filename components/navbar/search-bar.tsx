@@ -4,110 +4,116 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { searchProducts } from "@/data/products";
-import { Container } from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
 import { formatPrice } from "@/lib/format";
 
 export function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchOpen, setSearchOpen] = useState(false);
-  const searchRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
+  return null;
+}
 
-  const searchResults = searchQuery.length > 0 ? searchProducts(searchQuery).slice(0, 5) : [];
+export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const searchResults = searchQuery.length > 0 ? searchProducts(searchQuery).slice(0, 6) : [];
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
-        setSearchOpen(false);
-      }
+    if (open) {
+      setSearchQuery("");
+      const t = setTimeout(() => inputRef.current?.focus(), 50);
+      return () => clearTimeout(t);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
     };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
+    if (open) window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchOpen(false);
-      setSearchQuery("");
+      onClose();
     }
   };
 
+  if (!open) return null;
+
   return (
-    <div className="border-b border-border bg-gradient-to-r from-primary/[0.06] via-background to-accent/[0.06]">
-      <Container className="py-2">
-        <div ref={searchRef} className="relative">
-          <form onSubmit={handleSearchSubmit}>
-            <div className="relative">
-              <button
-                type="submit"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-primary/70 transition-colors hover:text-primary"
-                aria-label="Search products"
-              >
-                <Search className="h-4 w-4" />
-              </button>
-              <Input
-                type="search"
-                placeholder="Search electronics, home, beauty, toys & more..."
-                className="h-10 rounded-lg border-primary/15 bg-white pl-10 pr-4 text-sm shadow-none focus-visible:ring-primary/25"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setSearchOpen(true);
-                }}
-                onFocus={() => setSearchOpen(true)}
-              />
-            </div>
+    <div className="fixed inset-0 z-[70] bg-ink/40" onClick={onClose} role="dialog" aria-modal="true" aria-label="Search">
+      <div
+        className="border-b border-border bg-ivory px-4 py-6 shadow-lg sm:px-8"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mx-auto max-w-3xl">
+          <form onSubmit={handleSearchSubmit} className="relative">
+            <Search className="absolute left-0 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              ref={inputRef}
+              type="search"
+              placeholder="Search home, outdoor, travel..."
+              className="h-12 rounded-none border-0 border-b border-border bg-transparent pl-8 pr-10 text-base shadow-none focus-visible:ring-0"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-0 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              aria-label="Close search"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </form>
 
-          {searchOpen && searchQuery.trim().length > 0 && (
-            <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-lg border border-border bg-white py-1 shadow-lg">
+          {searchQuery.trim().length > 0 && (
+            <div className="mt-4">
               {searchResults.length > 0 ? (
-                <>
+                <ul>
                   {searchResults.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/product/${product.slug}`}
-                      className="flex items-center gap-3 px-3 py-2 transition-colors hover:bg-muted"
+                    <li key={product.id}>
+                      <Link
+                        href={`/product/${product.slug}`}
+                        className="flex items-center gap-4 py-3 transition-colors hover:bg-cream"
+                        onClick={onClose}
+                      >
+                        <div className="relative h-14 w-14 shrink-0 overflow-hidden bg-cream">
+                          <Image src={product.images[0]} alt={product.name} fill className="object-cover" sizes="56px" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium">{product.name}</p>
+                          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">{product.category}</p>
+                        </div>
+                        <p className="ml-auto text-sm">{formatPrice(product.salePrice ?? product.price)}</p>
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <button
+                      type="button"
+                      className="w-full py-3 text-left text-sm font-medium uppercase tracking-[0.16em] text-accent"
                       onClick={() => {
-                        setSearchOpen(false);
-                        setSearchQuery("");
+                        router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+                        onClose();
                       }}
                     >
-                      <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-md border border-border">
-                        <Image src={product.images[0]} alt={product.name} fill className="object-cover" sizes="36px" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium">{product.name}</p>
-                        <p className="text-xs text-muted-foreground">{formatPrice(product.salePrice ?? product.price)}</p>
-                      </div>
-                    </Link>
-                  ))}
-                  <button
-                    type="button"
-                    className="w-full border-t border-border px-3 py-2 text-left text-sm font-medium text-primary transition-colors hover:bg-muted"
-                    onClick={() => {
-                      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-                      setSearchOpen(false);
-                      setSearchQuery("");
-                    }}
-                  >
-                    View all results for &quot;{searchQuery}&quot;
-                  </button>
-                </>
+                      View all results for “{searchQuery}”
+                    </button>
+                  </li>
+                </ul>
               ) : (
-                <div className="px-3 py-2.5 text-sm text-muted-foreground">
-                  No products found for &quot;{searchQuery}&quot;.
-                </div>
+                <p className="py-6 text-sm text-muted-foreground">No products found for “{searchQuery}”.</p>
               )}
             </div>
           )}
         </div>
-      </Container>
+      </div>
     </div>
   );
 }

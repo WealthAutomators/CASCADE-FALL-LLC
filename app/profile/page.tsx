@@ -20,7 +20,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-[70vh] bg-muted/40">
+    <div className="min-h-[70vh] bg-cream/50">
       {showError && (
         <div className="border-b border-red-200 bg-red-50">
           <Container className="py-3">
@@ -35,13 +35,13 @@ export default function LoginPage() {
       )}
 
       <Container className="py-12 md:py-16">
-        <h1 className="text-center text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+        <h1 className="text-center font-display text-4xl font-medium tracking-tight text-foreground md:text-5xl">
           Log in
         </h1>
 
         <div className="mx-auto mt-10 max-w-lg">
-          <div className="rounded-lg border border-border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="text-lg font-semibold text-foreground">Log In Your Account</h2>
+          <div className="border border-border bg-card p-6 md:p-8">
+            <h2 className="font-display text-xl text-foreground">Your account</h2>
 
             <form onSubmit={handleLogin} className="mt-6 space-y-5">
               <div>

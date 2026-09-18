@@ -1,20 +1,16 @@
-import {
-  Feature,
-  HeroSlide,
-  PromoBanner,
-} from "@/types";
+import { Feature, HeroSlide, PromoBanner } from "@/types";
 
 export const heroSlides: HeroSlide[] = [
   {
     id: "1",
     image: "/hero/hero-1.jpg",
-    headline: "Everything Your Home Needs, All in One Place.",
+    headline: "Live closer to the weather.",
     description:
-      "Shop electronics, home essentials, toys, beauty products, kitchen accessories and more at prices you'll love.",
-    ctaText: "Shop Collection",
+      "A considered collection for home, trail, and travel — useful objects with a Pacific Northwest calm.",
+    ctaText: "Shop the collection",
     ctaLink: "/shop",
-    secondaryCtaText: "Today's Deals",
-    secondaryCtaLink: "/shop?sale=true",
+    secondaryCtaText: "Explore outdoor",
+    secondaryCtaLink: "/categories/outdoor",
   },
 ];
 
@@ -22,122 +18,136 @@ export const features: Feature[] = [
   {
     id: "1",
     icon: "truck",
-    title: "Fast Shipping",
-    description: "Free shipping on orders over $75. Delivered in 3–5 business days.",
+    title: "Thoughtful shipping",
+    description: "Complimentary standard shipping on orders over $75.",
   },
   {
     id: "2",
     icon: "shield",
-    title: "Secure Checkout",
-    description: "Your payment information is protected with industry-standard encryption.",
+    title: "Secure checkout",
+    description: "Encrypted payment details on every demo order.",
   },
   {
     id: "3",
     icon: "rotate",
-    title: "Easy Returns",
-    description: "Hassle-free 30-day returns on most items. We make it simple.",
+    title: "30-day returns",
+    description: "Send back unused items in original condition.",
   },
   {
     id: "4",
     icon: "headphones",
-    title: "Customer Support",
-    description: "Our friendly team is available Mon–Fri to help with orders and questions.",
-  },
-  {
-    id: "5",
-    icon: "star",
-    title: "Trusted Quality",
-    description: "Every product is carefully selected for quality, value, and reliability.",
+    title: "Direct support",
+    description: "Reach us by email for orders and product questions.",
   },
 ];
 
-export const dealsEndTime = new Date(Date.now() + 1000 * 60 * 60 * 18).toISOString();
+export const dealsEndTime = "2026-12-31T18:00:00.000Z";
 
 export const homepageDealsSlugs = [
-  "wireless-earbuds",
-  "electric-kettle",
-  "air-fryer",
-  "dog-bed",
-  "bath-towel-set",
-  "sunglasses-classic",
+  "ember-trail-lantern",
+  "mossweave-area-rug",
+  "passline-carry-on",
+  "desk-task-light",
+  "ridge-polarized-sunglasses",
+  "stillwater-ceramic-vase",
 ] as const;
 
 export const homepageBestsellerSlugs = [
-  "wireless-earbuds",
-  "bluetooth-speaker",
-  "bath-towel-set",
-  "yoga-mat",
-  "kids-learning-tablet",
-  "coffee-grinder",
-  "dog-bed",
-  "electric-kettle",
+  "trailcrest-hiking-boots",
+  "stillwater-stoneware-mug",
+  "cedarwool-throw-blanket",
+  "sounder-rain-jacket",
+  "stillwater-yoga-mat",
+  "cascade-dinner-plates",
+  "ridge-knit-beanie",
+  "fold-leather-wallet",
 ] as const;
 
 export const homepageFeaturedSlugs = [
-  "wireless-earbuds",
-  "electric-kettle",
-  "bath-towel-set",
-  "kids-learning-tablet",
-  "standing-desk-lamp",
-  "air-fryer",
-  "yoga-mat",
-  "dog-bed",
-  "coffee-grinder",
-  "bluetooth-speaker",
+  "mist-trail-daypack",
+  "cedarwool-throw-blanket",
+  "stillwater-stoneware-mug",
+  "emberglow-table-lamp",
+  "trailcrest-hiking-boots",
+  "sounder-weekender-bag",
+  "hemlock-wool-sweater",
+  "stillwater-ceramic-vase",
 ] as const;
 
 export const homepageNewArrivalSlugs = [
-  "stem-robot-kit",
-  "vitamin-c-serum-set",
-  "baby-monitor",
-  "foam-roller",
+  "mist-trail-daypack",
+  "cascade-trekking-poles",
+  "mist-morning-teapot",
+  "overland-utility-overshirt",
+  "hearth-candle-holder",
+  "forest-essential-oils",
+  "cedar-desk-planner",
+] as const;
+
+export const homepageEditorialSlugs = [
+  "hemlock-wool-sweater",
+  "emberglow-table-lamp",
+  "sounder-weekender-bag",
+] as const;
+
+export const homepageOutdoorSlugs = [
+  "ridgefield-compact-binoculars",
+  "trailcrest-hiking-boots",
+  "ember-trail-lantern",
+  "cedar-rest-hammock",
+] as const;
+
+export const homepageHomeSlugs = [
+  "cedarwool-throw-blanket",
+  "stillwater-ceramic-vase",
+  "cascade-dinner-plates",
+  "canopy-floor-lamp",
 ] as const;
 
 export const promotionalBanner: PromoBanner = {
   id: "1",
-  title: "Upgrade Your Everyday Living",
+  title: "The season, edited.",
   description:
-    "Discover premium products for every room in your home, from smart electronics to comfortable essentials, all in one place.",
-  buttonText: "Shop Deals",
+    "A smaller set of pieces for cooler mornings, wet sidewalks, and longer evenings indoors.",
+  buttonText: "Shop the edit",
   buttonLink: "/shop?sale=true",
   image: "/banners/featured.jpg",
 };
 
 export const aboutSection = {
-  title: "Shopping Made Easy.",
+  title: "Made for weather, rooms, and the road between them.",
   description:
-    "AAM Partners LLC brings together quality products across multiple categories, helping families find everything they need in one trusted online marketplace. We focus on affordability, reliability, and a smooth shopping experience from browsing to checkout.",
+    "CASCADE FALL LLC gathers contemporary products that feel at home in the Pacific Northwest — practical, calm, and built for everyday use rather than display alone.",
   checklist: [
-    "Wide selection across 12+ categories",
-    "Competitive prices on everyday essentials",
-    "Fast, reliable shipping nationwide",
-    "Dedicated customer support team",
+    "Outdoor, home, travel, and everyday utility in one catalog",
+    "Materials and forms chosen for daily use",
+    "Complimentary shipping on orders over $75",
+    "Straightforward returns within 30 days",
   ],
-  buttonText: "Learn More About Us",
+  buttonText: "Read the brand story",
   buttonLink: "/about",
-  image: "/banners/about.jpg",
+  image: "/banners/philosophy.jpg",
 };
 
 export const featuredCollection = {
-  title: "Featured Products",
-  description:
-    "Hand-picked favorites across electronics, home, beauty, and more — everything you need in one marketplace.",
-  bannerImage: "/banners/featured.jpg",
-  categorySlug: "electronics",
+  title: "Featured collection",
+  description: "A cross-section of home, trail, and travel — the pieces we return to.",
+  bannerImage: "/banners/home-living.jpg",
+  categorySlug: "home",
 };
 
 export const bestSellerTabs = [
   { label: "All", slug: "all" },
-  { label: "Electronics", slug: "electronics" },
-  { label: "Home & Kitchen", slug: "home-kitchen" },
-  { label: "Beauty", slug: "beauty" },
-  { label: "Sports", slug: "sports-outdoors" },
+  { label: "Outdoor", slug: "outdoor" },
+  { label: "Home", slug: "home" },
+  { label: "Kitchen", slug: "kitchen-dining" },
+  { label: "Travel", slug: "travel" },
 ];
 
 export const newsletter = {
-  title: "Get Exclusive Deals Before Everyone Else",
-  description: "Subscribe for discounts, new arrivals, and weekly offers.",
-  placeholder: "Enter your email address",
+  title: "Notes from the ridge line",
+  description: "New arrivals, seasonal edits, and quiet product stories. No noise.",
+  placeholder: "Email address",
   buttonText: "Subscribe",
 };
 

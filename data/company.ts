@@ -1,22 +1,15 @@
 export const company = {
-  name: "AAM Partners LLC",
-  tagline: "Everything You Need. Delivered with Confidence.",
+  name: "CASCADE FALL LLC",
+  shortName: "CASCADE FALL",
+  tagline: "Pacific Northwest living, thoughtfully curated.",
   description:
-    "AAM Partners LLC brings together quality products across multiple categories, helping families find everything they need in one trusted online marketplace.",
-  email: "aampartnersllc1@gmail.com",
+    "CASCADE FALL LLC is a contemporary lifestyle retailer offering useful, well-made products for home, outdoor days, travel, and everyday routines.",
+  email: "cascadefallllc@gmail.com",
   address: {
-    street: "717 S Military Hwy",
-    city: "Virginia Beach",
-    state: "VA",
-    zip: "23464",
-    country: "United States",
+    street: "17319 39TH DRIVE SE",
+    city: "BOTHELL",
+    state: "WA",
+    zip: "98012",
   },
-  social: {
-    instagram: "https://instagram.com/aampartnersllc",
-    facebook: "https://facebook.com/aampartnersllc",
-    twitter: "https://twitter.com/aampartnersllc",
-    pinterest: "https://pinterest.com/aampartnersllc",
-  },
-  hours: "Mon–Fri: 9am–6pm EST",
-  copyright: `© ${new Date().getFullYear()} AAM Partners LLC. All rights reserved.`,
+  copyright: "© 2026 CASCADE FALL LLC. All rights reserved.",
 };

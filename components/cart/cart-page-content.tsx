@@ -15,7 +15,7 @@ import { QuantitySelector } from "@/components/ui/quantity-selector";
 import { FREE_SHIPPING_THRESHOLD } from "@/lib/constants";
 
 export function CartPageContent() {
-  const { items, removeFromCart, updateQuantity, subtotal, shipping, tax, total } = useCart();
+  const { items, removeFromCart, updateQuantity, subtotal, shipping, tax, total, isHydrated } = useCart();
   const [coupon, setCoupon] = useState("");
   const [couponApplied, setCouponApplied] = useState(false);
 
@@ -28,10 +28,19 @@ export function CartPageContent() {
   const discount = couponApplied ? subtotal * 0.1 : 0;
   const finalTotal = total - discount;
 
+  if (!isHydrated) {
+    return (
+      <Container className="py-16">
+        <h1 className="font-display text-4xl font-medium">Your Cart</h1>
+        <p className="mt-4 text-muted-foreground">Loading your cart...</p>
+      </Container>
+    );
+  }
+
   if (items.length === 0) {
     return (
       <Container className="py-16 text-center">
-        <h1 className="text-3xl font-semibold">Your Cart</h1>
+        <h1 className="font-display text-4xl font-medium">Your Cart</h1>
         <p className="mt-4 text-muted-foreground">Your cart is currently empty.</p>
         <Button asChild size="lg" className="mt-8">
           <Link href="/shop">Continue Shopping</Link>
@@ -42,7 +51,7 @@ export function CartPageContent() {
 
   return (
     <Container className="py-8 md:py-12">
-      <h1 className="mb-8 text-3xl font-semibold tracking-tight">Your Cart</h1>
+      <h1 className="mb-8 font-display text-4xl font-medium tracking-tight">Your Cart</h1>
 
       <div className="grid gap-10 lg:grid-cols-3">
         <div className="lg:col-span-2">
