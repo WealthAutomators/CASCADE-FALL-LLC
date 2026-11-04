@@ -23,7 +23,7 @@ export function Navbar() {
     <>
       <header className="border-b border-border/80 bg-ivory/90 backdrop-blur-md">
         <Container>
-          <div className="flex h-16 items-center gap-6 lg:h-[4.5rem]">
+          <div className="flex h-16 items-center gap-3 sm:gap-6 lg:h-[4.5rem]">
             <Button
               variant="ghost"
               size="icon"
@@ -77,7 +77,7 @@ export function Navbar() {
                 ))}
                 <li data-mobile-extra className="mt-2 flex gap-2 border-t border-border pt-3 sm:hidden">
                   <Link href="/wishlist" onClick={() => setMobileOpen(false)} className="flex-1 rounded-md border border-border px-3 py-2 text-center text-sm font-medium hover:bg-muted">Wishlist</Link>
-                  <Link href="/account" onClick={() => setMobileOpen(false)} className="flex-1 rounded-md border border-border px-3 py-2 text-center text-sm font-medium hover:bg-muted">Account</Link>
+                  <Link href="/profile" onClick={() => setMobileOpen(false)} className="flex-1 rounded-md border border-border px-3 py-2 text-center text-sm font-medium hover:bg-muted">Account</Link>
                 </li>
               </ul>
             </nav>

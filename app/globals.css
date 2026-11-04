@@ -115,3 +115,11 @@ body {
   background: color-mix(in srgb, var(--rust) 28%, white);
   color: var(--ink);
 }
+
+/* mobile-overflow-guard */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
